@@ -32,7 +32,21 @@ class FakeApiService {
         return login
     }
 
-    async resetPassword() {}
+    async resetPassword(user, token) {
+        const reset = await fetch(`${this._apiBase}/users/reset_password`, {
+            method: 'POST',
+            body: JSON.stringify({
+                password: user.password,
+                confirmationPassword: user.confirmationPassword,
+                email: user.email
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'x-access-token': `${token}`
+            }
+        })
+        return reset
+    }
     async startAThread() {}
 
     async getAllThreads(token) {
