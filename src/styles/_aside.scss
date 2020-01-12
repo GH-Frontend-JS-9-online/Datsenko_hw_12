@@ -1,0 +1,20 @@
+.aside {
+  box-shadow: 0 3px 80px rgba(23, 24, 32, 0.2);
+  background-color: #2f3242;
+  //width: 96px;
+  height: 100vh;
+  padding: 20px;
+  .aside__nav {
+    .aside__nav__menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      .aside__nav__menu__item:not(:first-child) {
+        margin-top: 50px;
+        .aside__nav__menu__link {
+        }
+      }
+    }
+  }
+}

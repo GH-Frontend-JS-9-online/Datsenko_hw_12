@@ -1,0 +1,53 @@
+.header {
+  padding: 20px;
+  box-shadow: 0 3px 80px rgba(23, 24, 32, 0.2);
+  .top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .top-nav__menu {
+      display: flex;
+      align-items: center;
+      .top-nav__menu__item:not(:last-child) {
+        margin-right: 40px;
+      }
+      .top-nav__menu__item {
+        .top-nav__menu__link {
+          display: block;
+          text-decoration: none;
+        }
+        .add-btn {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          width: 133px;
+          height: 48px;
+          border-radius: 24px;
+          border: 2px solid #2196f3;
+          background-color: transparent;
+          color: #ffffff;
+          font-family: Montserrat;
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 138.31px;
+          /* Text style for "Add" */
+          letter-spacing: 0.24px;
+          //img[alt="plus"] {
+          //  margin-left: 5px;
+          //}
+          &:active {
+            transform: scale(0.95);
+          }
+        }
+        .profile {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img[alt="chevron"] {
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+  }
+}
