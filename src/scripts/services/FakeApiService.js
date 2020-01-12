@@ -47,12 +47,24 @@ class FakeApiService {
         })
         return reset
     }
-    async startAThread() {}
+    async startAThread(user, token) {
+        const thread = await fetch(`${this._apiBase}/threads`, {
+            method: 'POST',
+            body: {
+                _id: user.id
+            },
+            headers: {
+                'Authorization': `${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        return thread
+    }
 
     async getAllThreads(token) {
         const threads = await fetch(`${this._apiBase}/threads`, {
             headers: {
-                Authorization: `${token}`
+                'Authorization': `${token}`
             }
         })
         return threads
