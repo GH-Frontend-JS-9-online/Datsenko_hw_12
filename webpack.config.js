@@ -72,7 +72,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebPackPlugin({
-            title: 'Home',
+            title: 'VIRTUS',
             template: "./src/template/index.html",
             filename: "./index.html"
         }),
