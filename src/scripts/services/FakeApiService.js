@@ -50,9 +50,9 @@ class FakeApiService {
     async startAThread(user, token) {
         const thread = await fetch(`${this._apiBase}/threads`, {
             method: 'POST',
-            body: {
+            body: JSON.stringify({
                 _id: user.id
-            },
+            }),
             headers: {
                 'Authorization': `${token}`,
                 'Content-Type': 'application/json'
