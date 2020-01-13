@@ -1,8 +1,8 @@
 import HTML from './HTML.js'
+import messageCmp from './MessageComponent.js'
 
 class MainComponent {
     constructor() {}
-
     render() {
         const dataLeftMenu = [{src:'inbox', title: 'Inbox (2)'}, {src:'telegram', title: 'Sent'}, {src:'delete', title: 'Trash'}]
         let mainComponent = HTML(`
@@ -36,6 +36,7 @@ class MainComponent {
                 </nav>
             </main>
         `)
+        mainComponent.append(messageCmp.render())
         return mainComponent
     }
 }
