@@ -1,0 +1,92 @@
+.about {
+    box-shadow: 0 3px 80px rgba(23, 24, 32, 0.3);
+    background-color: #2b2d3c;
+    flex-basis: 15%;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    font-family: Montserrat;
+    font-weight: 400;
+    img {
+      width: 124px;
+      height: 124px;
+    }
+  .profile__data {
+    .profile__name {
+      font-size: 22px;
+      font-weight: 700;
+      //line-height: 92px;
+      letter-spacing: 0.44px;
+    }
+    .profile__position {
+      color: #9ea3b4;
+      font-size: 16px;
+      //line-height: 92px;
+      letter-spacing: 0.32px;
+    }
+    .profile__description {
+      color: #9ca1b2;
+      font-size: 14px;
+      //line-height: 28px;
+      letter-spacing: 0.42px;
+    }
+  }
+
+  .email {
+    .email-data {
+      color: #9ca1b2;
+      font-size: 14px;
+      //line-height: 28px;
+      letter-spacing: 0.42px;
+    }
+    .email-data {
+      font-size: 16px;
+      //line-height: 28px;
+      letter-spacing: 0.48px;
+    }
+  }
+  .phone {
+    .phone-title {
+      color: #9ca1b2;
+      font-size: 14px;
+      //line-height: 28px;
+      letter-spacing: 0.42px;
+    }
+    .phone-data {
+      font-size: 16px;
+      //line-height: 28px;
+      letter-spacing: 0.48px;
+    }
+  }
+  .address {
+    .address-title {
+      color: #9ca1b2;
+      font-size: 14px;
+      line-height: 28px;
+      letter-spacing: 0.42px;
+    }
+    .address-data {
+      font-size: 16px;
+      line-height: 28px;
+      letter-spacing: 0.48px;
+    }
+  }
+  .organization {
+    .organization-title {
+      color: #9ca1b2;
+      font-size: 14px;
+      line-height: 28px;
+      letter-spacing: 0.42px;
+    }
+    .organization-data {
+      font-size: 16px;
+      line-height: 28px;
+      letter-spacing: 0.48px;
+    }
+  }
+
+}
