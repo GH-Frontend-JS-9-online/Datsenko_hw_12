@@ -34,7 +34,13 @@ class FakeApiService {
         return login
     }
 
-    async resetPassword(user, token) {
+    async resetPassword(user) {
+        this.login(user)
+            .then(response => {
+                Storage.setData('token', response.headers.get('x-auth-token'))
+            })
+            .catch(error => console.log(error))
+        let token = Storage.getData('token')
         const reset = await fetch(`${this._apiBase}/users/reset_password`, {
             method: 'POST',
             body: JSON.stringify({
@@ -44,9 +50,10 @@ class FakeApiService {
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'x-access-token': `${token}`
+                'x-access-token': token
             }
         })
+        Storage.removeData()
         return reset
     }
     async startAThread(user) {
