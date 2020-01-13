@@ -3,8 +3,9 @@ import HTML from './HTML.js'
 class AboutComponent {
     constructor() {}
     render() {
+        const aboutComponentData = []
         let aboutComponent = HTML(`
-            <div class="main-message-container__right-aside about">
+            <div class="main-message-container__right-aside about">                    
                 <img src="./assets/images/main/ellipse.png" alt="profile-photo">
                 <div class="profile__data">
                     <h2 class="profile__name">Name</h2>

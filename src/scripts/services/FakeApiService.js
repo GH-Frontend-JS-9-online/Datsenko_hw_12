@@ -1,3 +1,5 @@
+import Storage from "./Storage.js";
+
 class FakeApiService {
     constructor() {
         this._apiBase = 'http://localhost:3000/api'
@@ -47,30 +49,87 @@ class FakeApiService {
         })
         return reset
     }
-    async startAThread(user, token) {
+    async startAThread(user) {
+        this.login(user)
+            .then(response => {
+            Storage.setData('token', response.headers.get('x-auth-token'))
+        })
+        .catch(error => console.log(error))
+        this.login(user)
+            .then(response => response.json())
+            .then(response => {
+                Storage.setData('id', response._id)
+            })
+            .catch(error => console.log(error))
+        let token = Storage.getData('token')
+        let id = Storage.getData('id')
         const thread = await fetch(`${this._apiBase}/threads`, {
             method: 'POST',
             body: JSON.stringify({
-                _id: user.id
+                user: {
+                    _id: id
+                }
             }),
             headers: {
-                'Authorization': `${token}`,
+                'Authorization': token,
                 'Content-Type': 'application/json'
             }
         })
+        Storage.removeData()
         return thread
     }
 
-    async getAllThreads(token) {
+    async getAllThreads(user) {
+        this.login(user)
+            .then(response => {
+                Storage.setData('token', response.headers.get('x-auth-token'))
+            })
+            .catch(error => console.log(error))
+        let token = Storage.getData('token')
         const threads = await fetch(`${this._apiBase}/threads`, {
+            method: 'GET',
             headers: {
-                'Authorization': `${token}`
+                'Authorization': token
             }
         })
+        Storage.removeData()
         return threads
     }
-    async sendMessage() {}
-    async getThreadMessages() {}
+    async sendMessage(user, message) {
+        this.login(user)
+            .then(response => {
+                Storage.setData('token', response.headers.get('x-auth-token'))
+            })
+            .catch(error => console.log(error))
+        this.login(user)
+            .then(response => response.json())
+            .then(response => {
+                Storage.setData('id', response._id)
+            })
+            .catch(error => console.log(error))
+        let token = Storage.getData('token')
+        let id = Storage.getData('id')
+        const send = fetch(`${this._apiBase}/threads/messages`, {
+            method: 'POST',
+            body: JSON.stringify({
+                thread: {
+                    _id: id
+                },
+                message: {
+                    body: message
+                }
+            }),
+            headers: {
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            }
+        })
+        Storage.removeData()
+        return send
+    }
+    async getThreadMessages() {
+
+    }
 
 }
 
