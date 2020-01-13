@@ -4,34 +4,26 @@ class MainComponent {
     constructor() {}
 
     render() {
+        const dataImgLeftMenu = [{src:'inbox', title: 'Inbox (2)'}, {src:'telegram', title: 'Sent'}, {src:'delete', title: 'Trash'}]
         let mainComponent = HTML(`
               <main class="main">
                 <nav class="main__nav">
                     <ul class="main__nav__menu">
                         <ul class="main__nav__left-menu">
-                            <li class="main__nav__left-menu__item">
-                                <a href="#" class="main__nav__left-menu__link">
-                                    <img src="./assets/images/main/inbox.png" alt="inbox">
-                                    Inbox (2)
-                                </a>
-                            </li>
-                            <li class="main__nav__left-menu__item">
-                                <a href="#" class="main__nav__left-menu__link telegram">
-                                    <img src="./assets/images/main/telegram.png" alt="telegram">
-                                    Sent
-                                </a>
-                            </li>
-                            <li class="main__nav__left-menu__item">
-                                <a href="#" class="main__nav__left-menu__link delete">
-                                    <img src="./assets/images/main/delete.png" alt="delete">
-                                    Trash
-                                </a>
-                            </li>
-        
+                            ${dataImgLeftMenu.map(({src, title}) => `
+                                <li class="main__nav__left-menu__item">
+                                    <a href="#" class="main__nav__left-menu__link">
+                                        <img src="./assets/images/main/${src}.png" alt="${src}">
+                                        ${title}
+                                    </a>                                    
+                                </li>                            
+                            `).join('')}                           
                         </ul>
                         <ul class="main__nav__right-menu">
                             <li class="main__nav__right-menu__item">
+                                <a href="#" class="main__nav__right-menu__link">
                                     Filter messages:
+                                </a>
                             </li>
                             <li class="main__nav__right-menu__item">
                                 <a href="#" class="main__nav__right-menu__link filter-btn">
