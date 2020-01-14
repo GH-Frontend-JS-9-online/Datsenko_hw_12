@@ -30,7 +30,6 @@
             font-size: 18px;
             font-weight: 400;
             line-height: 92px;
-            /* Text style for "I, nbox (2" */
             letter-spacing: 0.36px;
             img[src*="assets"] {
               margin-right: 5px;
@@ -94,7 +93,6 @@
         .new-conversation {
           padding: 20px 15px;
           button {
-            width: 100%;
             border: none;
             outline: none;
             border-radius: 5px;
@@ -104,7 +102,8 @@
             font-family: Montserrat;
             font-size: 18px;
             font-weight: 400;
-            line-height: 58.31px;
+            padding: 20px 140px;
+            //line-height: 58.31px;
             /* Text style for "New covers" */
             letter-spacing: 0.24px;
             transition: all .3s ease;
@@ -122,26 +121,43 @@
       justify-content: space-between;
       flex-direction: column;
       flex-basis: 55%;
-      form {
-
+      .write-message {
         display: flex;
-
+        justify-content: space-between;
+        align-items: center;
         border-radius: 10px;
         border: 1px solid rgba(156, 161, 178, 0.3);
         background-color: #404359;
-        input {
-          background: transparent;
-          width: 100%;
-          padding: 15px;
-          border-radius: 10px;
-          border: none;
-        }
-        a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 15px;
-        }
+      }
+      input[name="write-message-text"] {
+        padding: 18px 23px;
+        background: transparent;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        color: #9ca1b2;
+      }
+
+      input[name="write-message-text"]::placeholder {
+        color: #9ca1b2;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 28px;
+        letter-spacing: 0.32px;
+      }
+
+      .write-message-btn {
+        background: transparent;
+        padding: 18px 23px;
+        border: none;
+        border-radius: 10px;
+        outline: none;
+        cursor: pointer;
+      }
+
+      .write-message-btn:active {
+        transform: scale(.95);
       }
     }
   }
