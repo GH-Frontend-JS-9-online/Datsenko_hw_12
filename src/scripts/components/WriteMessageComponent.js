@@ -5,7 +5,7 @@ class WriteMessageComponent {
     render() {
         let writeMessageComponent = HTML(`
             <form action="#" class="write-message">
-                <input type="text" name="write-message-text" placeholder="Write a message">
+                <input type="text" name="write-message-text" placeholder="Write a message" autocomplete="off">
                 <button type="button" class="write-message-btn">
                     <img src="./assets/images/main/attachment.png" alt="attachment">
                 </button>
