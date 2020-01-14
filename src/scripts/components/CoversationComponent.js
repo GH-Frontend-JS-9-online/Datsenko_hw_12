@@ -1,4 +1,5 @@
 import HTML from './HTML.js'
+import writeMessageCmp from "./WriteMessageComponent.js";
 
 class CoversationComponent {
     constructor() {}
@@ -8,14 +9,9 @@ class CoversationComponent {
                 <ul>
 
                 </ul>
-                <form action="#">
-                    <input type="text" placeholder="Write a message">
-                    <a href="#">
-                        <img src="./assets/images/main/attachment.png" alt="attachment.png">
-                    </a>
-                </form>
             </div>
         `)
+        conversationComponent.append(writeMessageCmp.render())
         return conversationComponent
     }
 }
