@@ -148,7 +148,7 @@ class FakeApiService {
             .catch(error => console.log(error))
         let token = Storage.getData('token')
         let id = Storage.getData('id')
-        const threadsMessages = fetch(`${this._apiBase}/threads/:${id}`, {
+        const threadsMessages = fetch(`${this._apiBase}/threads/?${id}`, {
             method: 'GET',
             headers: {
                 'Authorization': token
