@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
 body {
-  margin: 0; padding: 0; background-color: #2f3242;
+  margin: 0;
+  padding: 0;
+  background-color: #2f3242;
+  font-family: Montserrat;
+  font-family: 'Montserrat', sans-serif;
 }
 ul {
   margin: 0; padding: 0;list-style: none;

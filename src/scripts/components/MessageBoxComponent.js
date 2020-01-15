@@ -7,9 +7,7 @@ class MessageBoxComponent {
     constructor() {}
     render() {
         let messageComponent = HTML(`
-            <div class="main-message-container">
-                
-            </div>
+            <div class="main-message-container"></div>
         `)
         messageComponent.append(inboxCmp.render())
         messageComponent.append(coversationCmp.render())
