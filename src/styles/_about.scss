@@ -1,92 +1,75 @@
 .about {
-    box-shadow: 0 3px 80px rgba(23, 24, 32, 0.3);
-    background-color: #2b2d3c;
-    flex-basis: 15%;
-    padding: 20px 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    color: #ffffff;
-    font-family: Montserrat;
-    font-weight: 400;
-    img {
-      width: 124px;
-      height: 124px;
-    }
-  .profile__data {
-    .profile__name {
-      font-size: 22px;
-      font-weight: 700;
-      //line-height: 92px;
-      letter-spacing: 0.44px;
-    }
-    .profile__position {
-      color: #9ea3b4;
-      font-size: 16px;
-      //line-height: 92px;
-      letter-spacing: 0.32px;
-    }
-    .profile__description {
-      color: #9ca1b2;
-      font-size: 14px;
-      //line-height: 28px;
-      letter-spacing: 0.42px;
-    }
-  }
+  box-shadow: 0 3px 80px rgba(23, 24, 32, 0.3);
+  background-color: #2b2d3c;
+  text-align: center;
+  color: #ffffff;
+  padding: 58px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 500px;
+  font-family: Montserrat;
+  flex-basis: 15%;
+}
 
-  .email {
-    .email-data {
-      color: #9ca1b2;
-      font-size: 14px;
-      //line-height: 28px;
-      letter-spacing: 0.42px;
-    }
-    .email-data {
-      font-size: 16px;
-      //line-height: 28px;
-      letter-spacing: 0.48px;
-    }
-  }
-  .phone {
-    .phone-title {
-      color: #9ca1b2;
-      font-size: 14px;
-      //line-height: 28px;
-      letter-spacing: 0.42px;
-    }
-    .phone-data {
-      font-size: 16px;
-      //line-height: 28px;
-      letter-spacing: 0.48px;
-    }
-  }
-  .address {
-    .address-title {
-      color: #9ca1b2;
-      font-size: 14px;
-      line-height: 28px;
-      letter-spacing: 0.42px;
-    }
-    .address-data {
-      font-size: 16px;
-      line-height: 28px;
-      letter-spacing: 0.48px;
-    }
-  }
-  .organization {
-    .organization-title {
-      color: #9ca1b2;
-      font-size: 14px;
-      line-height: 28px;
-      letter-spacing: 0.42px;
-    }
-    .organization-data {
-      font-size: 16px;
-      line-height: 28px;
-      letter-spacing: 0.48px;
-    }
-  }
+h2, h3, h4, h5, p, span {
+  margin: 0;
+  padding: 0;
+}
 
+.user-data {
+
+}
+
+.user-data h2 {
+  font-size: 22px;
+  font-weight: 700;
+  /*line-height: 92px;*/
+  letter-spacing: 0.44px;
+  margin-top: 39px;
+  margin-bottom: 8px;
+}
+
+.user-data h3 {
+  color: #9ca1b2;
+  font-size: 16px;
+  font-weight: 400;
+  /*line-height: 92px;*/
+  letter-spacing: 0.32px;
+}
+
+.user-data p {
+  color: #9ca1b2;
+  font-size: 14px;
+  font-weight: 400;
+  /*line-height: 28px;*/
+  letter-spacing: 0.42px;
+  margin-top: 27px;
+  margin-bottom: 55px;
+}
+
+.user-contacts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.user-contacts__item {
+  margin-bottom: 26px;
+}
+
+.user-contacts__item h4 {
+  color: #9ca1b2;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0.42px;
+}
+
+.user-contacts__item span {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0.48px;
 }

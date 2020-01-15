@@ -1,5 +1,5 @@
 import HTML from './HTML.js'
-import messageCmp from './MessageComponent.js'
+import messageCmp from './MessageBoxComponent.js'
 
 class MainComponent {
     constructor() {}

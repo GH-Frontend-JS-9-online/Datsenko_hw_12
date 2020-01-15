@@ -1,21 +1,38 @@
-import HTML from './HTML.js'
-import inboxCmp from "./InboxComponent.js"
-import aboutCmp from './AboutComponent.js'
-import coversationCmp from './CoversationComponent.js'
+import HTML from "./HTML.js";
 
-class MessageComponent {
-    constructor() {}
+class MessagesComponent {
+    constructor() {
+    }
     render() {
-        let messageComponent = HTML(`
-            <div class="main-message-container">
-                
-            </div>
+        const messages = [
+            {
+                imgSrc:'./assets/images/main/Elipsa_1_kopia.png',
+                text:'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ulla pariatur.',
+                date:'4 April 2016, 5:32 PM'
+            }
+        ]
+        let messagesComponent = HTML(`
+            <ul class="show-messages">
+                ${messages.map(({imgSrc, text, date}) => `
+                    <li class="show-messages__item">
+                        <img src="${imgSrc}" alt="">
+                        <div>
+                            <p>${text}</p>
+                            <span>${date}</span>
+                        </div>
+                    </li>
+                `).join('')} 
+                 <li class="show-messages__item right">
+                        <img src="./assets/images/main/Elipsa_1_kopia.png" alt="">
+                        <div>
+                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ulla pariatur.</p>
+                            <span>4 April 2016, 5:32 PM</span>
+                        </div>
+                    </li>               
+            </ul>
         `)
-        messageComponent.append(inboxCmp.render())
-        messageComponent.append(coversationCmp.render())
-        messageComponent.append(aboutCmp.render())
-        return messageComponent
+        return messagesComponent
     }
 }
-const messageCmp = new MessageComponent()
-export default messageCmp
+const messagesCmp = new MessagesComponent()
+export default messagesCmp

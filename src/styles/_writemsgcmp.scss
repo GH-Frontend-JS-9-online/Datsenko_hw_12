@@ -1,0 +1,38 @@
+.write-message {
+  border-radius: 10px;
+  border: 1px solid rgba(156, 161, 178, 0.3);
+  background-color: #404359;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input[name="write-message__text"] {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #9ca1b2;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0.32px;
+}
+
+.write-message__btn {
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.write-message__btn:active {
+  transform: scale(.95);
+}
+
+input[name="write-message__text"]:invalid ~ .write-message__btn  {display: none}
+input[name="write-message__text"]:valid ~ .write-message__btn {display: block}

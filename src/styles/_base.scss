@@ -7,6 +7,12 @@ body {
 ul {
   margin: 0; padding: 0;list-style: none;
 }
+
+h2, h3, h4, h5, p, span {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
   width: 100%; margin: 0 auto;
 }
