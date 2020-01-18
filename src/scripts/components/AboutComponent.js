@@ -6,7 +6,8 @@ class AboutComponent {
         let aboutComponent = HTML(`
             <div class="about">
                 <div class="user-photo">
-                    <img src="./assets/images/main/ellipse.png" alt="">
+                    <img src="./assets/images/main/online.png" alt="online">
+                    <img src="./assets/images/main/ellipse.png" alt="photo">
                 </div>
                 <div class="user-data">
                     <h2>Lyall Roach</h2>
