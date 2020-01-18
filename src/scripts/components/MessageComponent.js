@@ -28,7 +28,7 @@ class MessagesComponent {
                             <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ulla pariatur.</p>
                             <span>4 April 2016, 5:32 PM</span>
                         </div>
-                    </li>               
+                 </li>               
             </ul>
         `)
         return messagesComponent
