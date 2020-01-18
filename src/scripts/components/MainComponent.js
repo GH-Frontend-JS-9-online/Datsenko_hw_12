@@ -5,6 +5,7 @@ class MainComponent {
     constructor() {}
     render() {
         const dataLeftMenu = [{src:'inbox', title: 'Inbox (2)'}, {src:'telegram', title: 'Sent'}, {src:'delete', title: 'Trash'}]
+        const dataRightMenu = ['Filter messages:', 'Date']
         let mainComponent = HTML(`
               <main class="main">
                 <nav class="main__nav">
@@ -20,17 +21,13 @@ class MainComponent {
                             `).join('')}                           
                         </ul>
                         <ul class="main__nav__right-menu">                           
-                            <li class="main__nav__right-menu__item">
-                                <a href="#" class="main__nav__right-menu__link">
-                                    Filter messages:
-                                </a>
-                            </li>
-                            <li class="main__nav__right-menu__item">
-                                <a href="#" class="main__nav__right-menu__link filter-btn">
-                                    Date
-                                    <img src="./assets/images/main/chevron.png" alt="chevron">
-                                </a>
-                            </li>
+                             ${dataRightMenu.map(item => `
+                                <li class="main__nav__right-menu__item">
+                                    <a href="#" class="main__nav__right-menu__link">                                        
+                                        ${item}
+                                    </a>                                    
+                                </li>                            
+                            `).join('')}     
                         </ul>
                     </ul>
                 </nav>
