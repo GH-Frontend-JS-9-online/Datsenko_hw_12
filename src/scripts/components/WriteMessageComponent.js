@@ -17,8 +17,8 @@ class WriteMessageComponent {
             if (messageText.value.trim() !== '') {
                 fakeApiService.sendMessage(user, messageText.value.trim())
                 .then(response => response.json())
-                .then(data => console.log(data))
-                .catch(error => console.log(error))
+                .then(data => console.table(data))
+                .catch(error => console.error(error))
                 messageText.value = ''
             }
         })
