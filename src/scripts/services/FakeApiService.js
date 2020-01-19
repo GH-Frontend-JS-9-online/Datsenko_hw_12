@@ -34,41 +34,60 @@ class FakeApiService {
         return login
     }
 
-    async getCurrentUser() {
+    async getCurrentUser(user) {
+        this.login(user)
+            .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
+            .catch(error => console.error(error))
+        let token = Storage.getData('token')
         const currentUser = fetch(`${this._apiBase}/users`, {
             method: 'GET',
             headers: {
-                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTIwOTVjNDRiNTFlZTAwMjIyMjIyNmEiLCJpYXQiOjE1NzkxOTQ1MTR9.QKIbVJjpshCv6P77ElpWzHMuth5nY8QFYeF-1yCsUVM'
+                'x-access-token': token
             }
         })
+        Storage.removeData()
         return currentUser
     }
 
-    async getAllUsers() {
+    async getAllUsers(user) {
+        this.login(user)
+            .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
+            .catch(error => console.error(error))
+        let token = Storage.getData('token')
         const allUser = fetch(`${this._apiBase}/users/all`, {
             method: 'GET',
             headers: {
-                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTIwOTVjNDRiNTFlZTAwMjIyMjIyNmEiLCJpYXQiOjE1NzkxOTQ1MTR9.QKIbVJjpshCv6P77ElpWzHMuth5nY8QFYeF-1yCsUVM'
+                'x-access-token': token
             }
         })
+        Storage.removeData()
         return allUser
     }
 
-    async retrieveAllThreadMessages() {
+    async retrieveAllThreadMessages(user) {
+        this.login(user)
+            .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
+            .catch(error => console.error(error))
+        let token = Storage.getData('token')
         const allThreadMessages = await fetch(`${this._apiBase}/users/threads`, {
             method: 'GET',
             headers: {
-                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTIwOTVjNDRiNTFlZTAwMjIyMjIyNmEiLCJpYXQiOjE1NzkxOTQ1MTR9.QKIbVJjpshCv6P77ElpWzHMuth5nY8QFYeF-1yCsUVM'
+                'x-access-token': token
             }
         })
+        Storage.removeData()
         return allThreadMessages
     }
 
     async resetPassword(user) {
+        this.login(user)
+            .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
+            .catch(error => console.error(error))
+        let token = Storage.getData('token')
         const resetPassword = await fetch(`${this._apiBase}/users/reset_password`, {
             method: 'POST',
             headers: {
-                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTIwOTVjNDRiNTFlZTAwMjIyMjIyNmEiLCJpYXQiOjE1NzkxOTQ1MTR9.QKIbVJjpshCv6P77ElpWzHMuth5nY8QFYeF-1yCsUVM',
+                'x-access-token': token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -77,45 +96,75 @@ class FakeApiService {
                 email: user.email
             })
         })
+        Storage.removeData()
         return resetPassword
     }
 
-    async retrieveAllThreads() {
-        const allThreads = await fetch(`${this._apiBase}/threads/messages/5e2095c44b51ee002222226a`, {
+    async retrieveAllThreads(user) {
+        this.login(user)
+            .then(response => response.json())
+            .then(response => Storage.setData('id', response._id))
+            .catch(error => console.error(error))
+        this.login(user)
+            .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
+            .catch(error => console.error(error))
+        let id = Storage.getData('id')
+        let token = Storage.getData('token')
+        const allThreads = await fetch(`${this._apiBase}/threads/messages/${id}`, {
             method: 'GET',
             headers: {
-                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTIwOTVjNDRiNTFlZTAwMjIyMjIyNmEiLCJpYXQiOjE1NzkxOTQ1MTR9.QKIbVJjpshCv6P77ElpWzHMuth5nY8QFYeF-1yCsUVM'
+                'x-access-token': token
             }
         })
+        Storage.removeData()
         return allThreads
     }
 
-    async  createThread() {
+    async  createThread(user) {
+        this.login(user)
+            .then(response => response.json())
+            .then(response => Storage.setData('id', response._id))
+            .catch(error => console.error(error))
+        this.login(user)
+            .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
+            .catch(error => console.error(error))
+        let id = Storage.getData('id')
+        let token = Storage.getData('token')
         const createThread = await fetch(`${this._apiBase}/threads`, {
             method: 'POST',
             headers: {
-                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTIwOTVjNDRiNTFlZTAwMjIyMjIyNmEiLCJpYXQiOjE1NzkxOTQ1MTR9.QKIbVJjpshCv6P77ElpWzHMuth5nY8QFYeF-1yCsUVM',
+                'x-access-token': token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 user: {
-                    _id: "5e2095c44b51ee002222226a"
+                    _id: id
                 }
             })
         })
+        Storage.removeData()
         return createThread
     }
 
     async sendMessage(user, message) {
+        this.login(user)
+            .then(response => response.json())
+            .then(response => Storage.setData('id', response._id))
+            .catch(error => console.error(error))
+        this.login(user)
+            .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
+            .catch(error => console.error(error))
+        let id = Storage.getData('id')
+        let token = Storage.getData('token')
         const sendMessage = fetch(`${this._apiBase}/threads/messages`, {
             method: 'POST',
             headers: {
-                'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTIwOTVjNDRiNTFlZTAwMjIyMjIyNmEiLCJpYXQiOjE1NzkxOTQ1MTR9.QKIbVJjpshCv6P77ElpWzHMuth5nY8QFYeF-1yCsUVM',
+                'x-access-token': token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 thread: {
-                    _id: "5e2095c44b51ee002222226a"
+                    _id: id
                 },
                 message: {
                     body: message
