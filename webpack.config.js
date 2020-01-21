@@ -73,17 +73,22 @@ module.exports = {
     plugins: [
         new HtmlWebPackPlugin({
             title: 'VIRTUS',
-            template: "./src/template/index.html",
-            filename: "./index.html"
+            template: "src/template/template.html",
+            filename: "index.html"
         }),
         new MiniCssExtractPlugin({
             filename: "[name].css",
             chunkFilename: "[id].css"
         }),
-        new CopyWebpackPlugin([{
-            from: './src/assets/images',
-            to: './assets/images'
-        },
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, 'src/favicon.ico'),
+                to: path.resolve(__dirname, 'public')
+            },
+            {
+                from: './src/assets/images',
+                to: './assets/images'
+            },
             {
                 from: './src/assets/fonts',
                 to: './assets/fonts'
