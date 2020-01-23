@@ -39,7 +39,7 @@ class FakeApiService {
             .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
             .catch(error => console.error(error))
         let token = Storage.getData('token')
-        const currentUser = fetch(`${this._apiBase}/users`, {
+        const currentUser = fetch(`${this._apiBase}/users/`, {
             method: 'GET',
             headers: {
                 'x-access-token': token
@@ -110,7 +110,7 @@ class FakeApiService {
             .catch(error => console.error(error))
         let id = Storage.getData('id')
         let token = Storage.getData('token')
-        const allThreads = await fetch(`${this._apiBase}/threads/messages/${id}`, {
+        const allThreads = await fetch(`${this._apiBase}/threads?sort=desc`, {
             method: 'GET',
             headers: {
                 'x-access-token': token
@@ -118,6 +118,26 @@ class FakeApiService {
         })
         Storage.removeData()
         return allThreads
+    }
+
+    async retrieveAllThreadMessages(user) {
+        this.login(user)
+            .then(response => response.json())
+            .then(response => Storage.setData('id', response._id))
+            .catch(error => console.error(error))
+        this.login(user)
+            .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
+            .catch(error => console.error(error))
+        let id = Storage.getData('id')
+        let token = Storage.getData('token')
+        const allTreadsMassages = fetch(`${this._apiBase}/threads//messages/${id}?sort=desc`, {
+            method: 'GET',
+            headers: {
+                'x-access-token': token
+            }
+        })
+        Storage.removeData()
+        return allTreadsMassages
     }
 
     async  createThread(user) {
@@ -156,6 +176,7 @@ class FakeApiService {
             .catch(error => console.error(error))
         let id = Storage.getData('id')
         let token = Storage.getData('token')
+        console.log(id, token)
         const sendMessage = fetch(`${this._apiBase}/threads/messages`, {
             method: 'POST',
             headers: {
