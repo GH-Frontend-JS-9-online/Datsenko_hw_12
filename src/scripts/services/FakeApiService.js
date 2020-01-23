@@ -171,6 +171,7 @@ class FakeApiService {
                 }
             })
         })
+        Storage.removeData()
         return sendMessage
     }
 }
