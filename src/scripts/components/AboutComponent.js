@@ -10,7 +10,6 @@ class AboutComponent {
             .then(data => Storage.setData('user', data))
             .catch(error => console.error(error))
         let userInfo = [Storage.getData('user')]
-        Storage.removeData()
         let aboutComponent = HTML(`
             <div class="about">
                 <div class="user-photo">
@@ -40,8 +39,8 @@ class AboutComponent {
                     <h4>Organization</h4>
                     <span>${organization}</span>
                     </li>
-                </ul>                
-                `).join('')}               
+                </ul>
+                `).join('')}
             </div>
         `)
         return aboutComponent
