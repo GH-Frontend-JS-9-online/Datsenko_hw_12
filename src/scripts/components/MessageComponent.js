@@ -1,4 +1,5 @@
 import HTML from "./HTML.js";
+import DateMessage from "../services/DateMessage.js";
 
 class MessagesComponent {
     constructor() {
@@ -8,7 +9,7 @@ class MessagesComponent {
             {
                 imgSrc:'./assets/images/main/Elipsa_1_kopia.png',
                 text:'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ulla pariatur.',
-                date:'4 April 2016, 5:32 PM'
+                date: new DateMessage().totalDateMessage()
             }
         ]
         let messagesComponent = HTML(`
