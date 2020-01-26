@@ -1,5 +1,6 @@
 import HTML from "./HTML.js";
 import fakeApiService from "../services/FakeApiService.js";
+import Storage from "../services/Storage.js";
 
 class WriteMessageComponent {
     constructor() {}
@@ -15,10 +16,11 @@ class WriteMessageComponent {
         writeMessageBtn.addEventListener('click', (event) => {
             event.preventDefault()
             if (messageText.value.trim() !== '') {
-                fakeApiService.sendMessage(user, messageText.value.trim())
-                .then(response => response.json())
-                .then(data => console.table(data))
-                .catch(error => console.error(error))
+                const userInfo = Storage.getData('user')
+                fakeApiService.sendMessage(Storage.getData('token'), Storage.getData('user')._id, messageText.value.trim())
+                    .then(response => response.json())
+                    .then(data => console.table(data))
+                    .catch(error => console.error(error))
                 messageText.value = ''
             }
         })
