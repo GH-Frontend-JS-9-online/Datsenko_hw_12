@@ -4,7 +4,7 @@ import DateMessage from "../services/DateMessage.js";
 class MessagesComponent {
     constructor() {
     }
-    render() {
+    render(user) {
         const messages = [
             {
                 imgSrc:'./assets/images/main/Elipsa_1_kopia.png',
