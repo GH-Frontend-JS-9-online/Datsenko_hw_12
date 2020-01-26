@@ -162,16 +162,7 @@ class FakeApiService {
         return createThread
     }
 
-    async sendMessage(user, message) {
-        this.login(user)
-            .then(response => response.json())
-            .then(response => Storage.setData('id', response._id))
-            .catch(error => console.error(error))
-        this.login(user)
-            .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
-            .catch(error => console.error(error))
-        let id = Storage.getData('id')
-        let token = Storage.getData('token')
+    async sendMessage(token, id, message) {
         const sendMessage = fetch(`${this._apiBase}/threads/messages`, {
             method: 'POST',
             headers: {
@@ -187,7 +178,6 @@ class FakeApiService {
                 }
             })
         })
-        Storage.removeData()
         return sendMessage
     }
 }
