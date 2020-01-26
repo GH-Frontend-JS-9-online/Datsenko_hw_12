@@ -77,18 +77,18 @@
   margin: 0;
 }
 
-//.form h2 {
-//  text-align: center;
-//}
+.form h2 {
+  text-align: center;
+}
 
 .form span {
   font-size: 12px;
   margin: 15px 0;
 }
 
- .form a {
-  color: #2196f3;
+.form a {
   font-size: 14px;
+  color: #2196f3;
   text-decoration: none;
   margin: 15px 0;
 }
@@ -99,31 +99,4 @@
   line-height: 20px;
   letter-spacing: 0.5px;
   margin: 20px 0 30px;
-}
-
-
-.form {
-  position: absolute;
-  right: 0;
-  background-color: #2f3242;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 50px;
-  height: 100%;
-  width: 50%;
-  text-align: center;
-}
-
-.form > input{
-    border-radius: 10px;
-    border: 1px solid rgba(156, 161, 178, 0.3);
-    background-color: #404359;
-    color: #ffffff;
-    outline: none;
-    padding: 12px 15px;
-    margin: 8px 0;
-    width: 100%;
 }
