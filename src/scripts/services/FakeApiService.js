@@ -34,11 +34,7 @@ class FakeApiService {
         return login
     }
 
-    async getCurrentUser(user) {
-        this.login(user)
-            .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
-            .catch(error => console.error(error))
-        let token = Storage.getData('token')
+    async getCurrentUser(token) {
         const currentUser = fetch(`${this._apiBase}/users/`, {
             method: 'GET',
             headers: {
@@ -176,7 +172,6 @@ class FakeApiService {
             .catch(error => console.error(error))
         let id = Storage.getData('id')
         let token = Storage.getData('token')
-        console.log(id, token)
         const sendMessage = fetch(`${this._apiBase}/threads/messages`, {
             method: 'POST',
             headers: {
