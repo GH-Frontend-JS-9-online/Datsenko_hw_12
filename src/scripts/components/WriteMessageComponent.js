@@ -4,7 +4,7 @@ import Storage from "../services/Storage.js";
 
 class WriteMessageComponent {
     constructor() {}
-    render(user) {
+    render() {
         let writeMessageComponent = HTML(`
             <form action="#" class="write-message">
                 <input type="text" name="write-message__text" placeholder="Write a message" required="required" pattern=".*\\S.*">
