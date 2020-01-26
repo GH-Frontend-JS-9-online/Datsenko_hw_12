@@ -71,7 +71,7 @@ class LoginComponent {
                     <form name="loginForm" class="form">
                         <h1>Log in</h1>
                         <a href="http://localhost:3000/pages/register.html">Not a member?</a>
-                        <input type="email" name="userEmail" placeholder="Email..." required autocomplete="" >
+                        <input type="email" name="userEmail" placeholder="Email..." required autocomplete="off" >
                         <input type="password" name="userPassword" placeholder="Password..." required>
                         <button class="btn" type="submit"">Log in</button>
                         <a href="http://localhost:3000/pages/sendreset.html">Forgot password?</a>
