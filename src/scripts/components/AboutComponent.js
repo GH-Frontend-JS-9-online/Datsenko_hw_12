@@ -1,16 +1,18 @@
-import HTML from "./HTML.js";
-import fakeApiService from "../services/FakeApiService.js";
-import Storage from "../services/Storage.js";
+import Component from '../components/Component'
+import store from '../store/Store'
+import _$ from './searcElement'
+import Storage from '../store/Storage'
 
-class AboutComponent {
-    constructor() {}
+export default class AboutComponent extends Component{
+    constructor() {
+        super(store, _$('.about'))
+    }
+
     render() {
         let userInfo = [Storage.getData('user')]
-        console.log(userInfo)
 
-        let aboutComponent = HTML(`
-            <div class="about">
-               <div class="user-photo">
+        this.anchor.innerHTML = `
+            <div class="user-photo">
                 <img src="./assets/images/main/online.png" alt="online">
                 <img src="./assets/images/main/ellipse.png" alt="photo">
             </div>
@@ -39,10 +41,7 @@ class AboutComponent {
                 </li>
             </ul>
             `).join('')}
-            </div>
-        `)
-        return aboutComponent
+
+        `
     }
 }
-const aboutCmp = new AboutComponent()
-export default aboutCmp

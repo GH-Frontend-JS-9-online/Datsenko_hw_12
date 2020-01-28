@@ -1,85 +1,43 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin')
-const path = require("path")
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = {
-    entry: "./src/index.js" ,
-    output: {
-        path: path.resolve(__dirname, 'public'),
-        filename: "main.js",
+    entry: {
+        main: ['@babel/polyfill', './src/index.js']
     },
-    devtool: "source-map",
+    output: {
+        filename: '[name].[contenthash].js',
+        path: path.resolve(__dirname, 'public')
+    },
     devServer: {
-        contentBase: path.join(__dirname, 'public'),
-        compress: true,
         port: 8000
     },
-    module: {
-        rules: [{
-                test: /\.m?js$/,
-                resolve: {
-                    extensions: ['.ts', '.js']
-                },
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env'],
-                        plugins: ['@babel/plugin-proposal-object-rest-spread', "@babel/plugin-transform-runtime"]
-                    }
-                }
-            },
-            {
-                test: /\.(sass|scss)$/,
-                use: [{
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: "css-loader",
-                        options: {
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: "sass-loader",
-                        options: {
-                            sourceMap: true
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[path][name].[ext]'
-                    }
-                }]
-            }
-        ]
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
     },
+    devtool: 'source-map',
     plugins: [
-        new HtmlWebPackPlugin({
-            title: 'VIRTUS',
-            template: "src/template/template.html",
-            filename: "index.html"
+        new HtmlWebpackPlugin({
+            title: 'Dashboard',
+            filename: 'index.html',
+            template: './src/template/template.html',
+            minify: {
+                collapseWhitespace: true,
+                removeComments: true,
+                removeRedundantAttributes: true,
+                removeScriptTypeAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                useShortDoctype: true
+            }
         }),
-        new MiniCssExtractPlugin({
-            filename: "[name].css",
-            chunkFilename: "[id].css"
-        }),
+        new CleanWebpackPlugin(),
         new CopyWebpackPlugin([
             {
                 from: path.resolve(__dirname, 'src/favicon.ico'),
@@ -92,20 +50,62 @@ module.exports = {
             {
                 from: './src/assets/fonts',
                 to: './assets/fonts'
-            },
+            }
         ]),
-        new HtmlBeautifyPlugin({
-            config: {
-                html: {
-                    end_with_newline: true,
-                    indent_size: 2,
-                    indent_with_tabs: true,
-                    indent_inner_html: true,
-                    preserve_newlines: true
+        new MiniCssExtractPlugin({
+            filename: '[name].[contenthash].css'
+        }),
+        new OptimizeCssAssetsPlugin(),
+        new TerserPlugin()
+
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        plugins: [
+                            '@babel/plugin-proposal-class-properties',
+                            '@babel/plugin-proposal-object-rest-spread'
+                        ]
+                    }
                 }
             },
-            replace: [' type="text/javascript"']
-        })
-    ]
-
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {},
+                    },
+                    'css-loader',
+                    'postcss-loader'
+                ]
+            },
+            {
+                test: /\.(sass|scss)$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {},
+                    },
+                    'css-loader',
+                    'postcss-loader',
+                    'sass-loader'
+                ]
+            },
+            {
+                test: /\.(png|jpg|svg|gif)$/,
+                use: ['file-loader']
+            },
+            {
+                test: /\.(ttf|woff|woff2|eot)$/,
+                use: ['file-loader']
+            }
+        ]
+    }
 }

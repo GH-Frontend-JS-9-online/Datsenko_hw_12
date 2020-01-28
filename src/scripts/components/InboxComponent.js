@@ -1,14 +1,15 @@
-import HTML from "./HTML.js";
+import Component from '../components/Component'
+import store from '../store/Store'
+import _$ from './searcElement'
 
-class InboxComponent {
+export default class InboxComponent extends Component{
     constructor() {
+        super(store, _$('.inbox'))
     }
 
     render() {
-        const personData = [{photo: 'Elipsa_1_kopia', name: 'Michelle Stewart', date: '5:32', message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusm.'}]
-        let inboxComponent = HTML(`
-        <div class="inbox"> 
-                ${personData.map(({photo, name, date, message}) => `
+        this.anchor.innerHTML = `
+            ${store.state.inboxData.map(({photo, name, date, message}) => `
                     <div class="messages">
                     <div class="person">
                         <div>
@@ -27,14 +28,7 @@ class InboxComponent {
                         <img src="./assets/images/main/plus.png" alt="">
                         New coversation
                     </button>
-                </div>       
-        </div>
-                
-       
-    `)
-        return inboxComponent
+                </div>     
+        `
     }
 }
-
-const inboxCmp = new InboxComponent()
-export default inboxCmp
