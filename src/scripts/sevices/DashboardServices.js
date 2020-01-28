@@ -139,6 +139,34 @@ class DashboardServices {
         return sendMessage
     }
 
+    async createProjects(token, project) {
+        const newProject = fetch(`${this._apiBase}/projects/`, {
+            method: 'POST',
+            headers: {
+                'x-access-token': token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: project.title,
+                company: project.company,
+                cost: project.cost,
+                deadline: project.deadline,
+                assigned: project.assigned
+            })
+        })
+        return newProject
+    }
+
+    async getAllProjects(token) {
+        const allProjects = fetch(`${this._apiBase}/projects/`, {
+            method: 'GET',
+            headers: {
+                'x-access-token': token
+            }
+        })
+        return allProjects
+    }
+
 }
 
 const dashboardServices = new DashboardServices()
