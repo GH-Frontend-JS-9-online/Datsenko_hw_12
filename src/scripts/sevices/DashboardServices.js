@@ -34,47 +34,6 @@ class DashboardServices {
         return login
     }
 
-    async getCurrentUser(token) {
-        const currentUser = fetch(`${this._apiBase}/users/`, {
-            method: 'GET',
-            headers: {
-                'x-access-token': token
-            }
-        })
-        Storage.removeData()
-        return currentUser
-    }
-
-    async getAllUsers(user) {
-        this.login(user)
-            .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
-            .catch(error => console.error(error))
-        let token = Storage.getData('token')
-        const allUser = fetch(`${this._apiBase}/users/all`, {
-            method: 'GET',
-            headers: {
-                'x-access-token': token
-            }
-        })
-        Storage.removeData()
-        return allUser
-    }
-    //
-    // async retrieveAllThreadMessages(token, id) {
-    //     // this.login(user)
-    //     //     .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
-    //     //     .catch(error => console.error(error))
-    //     // let token = Storage.getData('token')
-    //     const allThreadMessages = await fetch(`${this._apiBase}/users/threads`, {
-    //         method: 'GET',
-    //         headers: {
-    //             'x-access-token': token
-    //         }
-    //     })
-    //     Storage.removeData()
-    //     return allThreadMessages
-    // }
-
     async resetPassword(user) {
         this.login(user)
             .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
@@ -92,60 +51,60 @@ class DashboardServices {
                 email: user.email
             })
         })
-        Storage.removeData()
         return resetPassword
     }
 
-    // async retrieveAllThreads(user) {
-    //     this.login(user)
-    //         .then(response => response.json())
-    //         .then(response => Storage.setData('id', response._id))
-    //         .catch(error => console.error(error))
-    //     this.login(user)
-    //         .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
-    //         .catch(error => console.error(error))
-    //     let id = Storage.getData('id')
-    //     let token = Storage.getData('token')
-    //     const allThreads = await fetch(`${this._apiBase}/threads?sort=desc`, {
-    //         method: 'GET',
-    //         headers: {
-    //             'x-access-token': token
-    //         }
-    //     })
-    //     Storage.removeData()
-    //     return allThreads
-    // }
+    async getCurrentUser(token) {
+        const currentUser = fetch(`${this._apiBase}/users/`, {
+            method: 'GET',
+            headers: {
+                'x-access-token': token
+            }
+        })
+        return currentUser
+    }
+
+    async getAllUsers(token) {
+        const allUser = fetch(`${this._apiBase}/users/all`, {
+            method: 'GET',
+            headers: {
+                'x-access-token': token
+            }
+        })
+        return allUser
+    }
+
+    async getUserById(token, id) {
+        const userById = fetch(`${this._apiBase}/users/${id}`, {
+            method: 'GET',
+            headers: {
+                'x-access-token': token
+            }
+        })
+        return userById
+    }
+
+    async retrieveAllThreads(token) {
+        const allThreads = await fetch(`${this._apiBase}/threads?sort=desc`, {
+            method: 'GET',
+            headers: {
+                'x-access-token': token
+            }
+        })
+        return allThreads
+    }
 
     async retrieveAllThreadMessages(token, id) {
-        // this.login(user)
-        //     .then(response => response.json())
-        //     .then(response => Storage.setData('id', response._id))
-        //     .catch(error => console.error(error))
-        // this.login(user)
-        //     .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
-        //     .catch(error => console.error(error))
-        // let id = Storage.getData('id')
-        // let token = Storage.getData('token')
         const allTreadsMassages = fetch(`${this._apiBase}/threads/messages/${id}?sort=desc`, {
             method: 'GET',
             headers: {
                 'x-access-token': token
             }
         })
-        //Storage.removeData()
         return allTreadsMassages
     }
 
-    async  createThread(user) {
-        this.login(user)
-            .then(response => response.json())
-            .then(response => Storage.setData('id', response._id))
-            .catch(error => console.error(error))
-        this.login(user)
-            .then(response => Storage.setData('token', response.headers.get('x-auth-token')))
-            .catch(error => console.error(error))
-        let id = Storage.getData('id')
-        let token = Storage.getData('token')
+    async  createThread(token, id) {
         const createThread = await fetch(`${this._apiBase}/threads`, {
             method: 'POST',
             headers: {
@@ -158,7 +117,6 @@ class DashboardServices {
                 }
             })
         })
-        Storage.removeData()
         return createThread
     }
 
@@ -180,8 +138,6 @@ class DashboardServices {
         })
         return sendMessage
     }
-
-
 
 }
 
