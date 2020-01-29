@@ -23,7 +23,7 @@ export default class WriteMessageComponent extends Component{
             event.preventDefault()
             if (messageText.value.trim() !== '') {
                 // const userInfo = Storage.getData('user')
-                dashboardServices.sendMessage(Storage.getData('token'), Storage.getData('user')._id, messageText.value.trim())
+                dashboardServices.sendMessage(messageText.value.trim())
                     .then(response => response.json())
                     .then(data => console.table(data))
                     .catch(error => console.error(error))
