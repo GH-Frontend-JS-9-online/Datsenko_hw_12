@@ -54,7 +54,8 @@ class DashboardServices {
         return resetPassword
     }
 
-    async getCurrentUser(token) {
+    async getCurrentUser() {
+        let token = Storage.getData('token')
         const currentUser = fetch(`${this._apiBase}/users/`, {
             method: 'GET',
             headers: {
@@ -64,7 +65,8 @@ class DashboardServices {
         return currentUser
     }
 
-    async getAllUsers(token) {
+    async getAllUsers() {
+        let token = Storage.getData('token')
         const allUser = fetch(`${this._apiBase}/users/all`, {
             method: 'GET',
             headers: {
@@ -74,27 +76,29 @@ class DashboardServices {
         return allUser
     }
 
-    async getUserById(token, id) {
-        const userById = fetch(`${this._apiBase}/users/${id}`, {
+    async getUserById() {
+        const userById = fetch(`${this._apiBase}/users/${Storage.getData('id')}`, {
             method: 'GET',
             headers: {
-                'x-access-token': token
+                'x-access-token': Storage.getData('token')
             }
         })
         return userById
     }
 
-    async retrieveAllThreads(token) {
+    async retrieveAllThreads() {
         const allThreads = await fetch(`${this._apiBase}/threads?sort=desc`, {
             method: 'GET',
             headers: {
-                'x-access-token': token
+                'x-access-token': Storage.getData('token')
             }
         })
         return allThreads
     }
 
-    async retrieveAllThreadMessages(token, id) {
+    async retrieveAllThreadMessages() {
+        let token = Storage.getData('token')
+        let id = Storage.getData('id')
         const allTreadsMassages = fetch(`${this._apiBase}/threads/messages/${id}?sort=desc`, {
             method: 'GET',
             headers: {
@@ -104,7 +108,9 @@ class DashboardServices {
         return allTreadsMassages
     }
 
-    async  createThread(token, id) {
+    async  createThread() {
+        let token = Storage.getData('token')
+        let id = Storage.getData('id')
         const createThread = await fetch(`${this._apiBase}/threads`, {
             method: 'POST',
             headers: {
@@ -120,7 +126,9 @@ class DashboardServices {
         return createThread
     }
 
-    async sendMessage(token, id, message) {
+    async sendMessage(message) {
+        let token = Storage.getData('token')
+        let id = Storage.getData('id')
         const sendMessage = fetch(`${this._apiBase}/threads/messages`, {
             method: 'POST',
             headers: {
@@ -139,7 +147,8 @@ class DashboardServices {
         return sendMessage
     }
 
-    async createProjects(token, project) {
+    async createProjects(project) {
+        let token = Storage.getData('token')
         const newProject = fetch(`${this._apiBase}/projects/`, {
             method: 'POST',
             headers: {
@@ -157,7 +166,8 @@ class DashboardServices {
         return newProject
     }
 
-    async getAllProjects(token) {
+    async getAllProjects() {
+        let token = Storage.getData('token')
         const allProjects = fetch(`${this._apiBase}/projects/`, {
             method: 'GET',
             headers: {
@@ -167,7 +177,9 @@ class DashboardServices {
         return allProjects
     }
 
-    async  updateProject(token, id, newProjectData) {
+    async  updateProject(newProjectData) {
+        let token = Storage.getData('token')
+        let id = Storage.getData('id')
         const updateProject = fetch(`${this._apiBase}/projects/${id}`, {
             method: 'PUT',
             headers: {
@@ -182,7 +194,9 @@ class DashboardServices {
         return updateProject
     }
 
-    async removeProject(token, id) {
+    async removeProject() {
+        let token = Storage.getData('token')
+        let id = Storage.getData('id')
         const removeProject = fetch(`${this._apiBase}/projects/${id}`, {
             method: 'DEL',
             headers: {
