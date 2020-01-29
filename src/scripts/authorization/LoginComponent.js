@@ -1,6 +1,7 @@
 import Component from '../components/Component'
 import store from '../store/Store'
 import _$ from '../components/searcElement'
+import dashboardServices from '../sevices/DashboardServices'
 
 export default class LoginComponent extends Component{
     constructor() {
@@ -10,7 +11,7 @@ export default class LoginComponent extends Component{
     loginHandler(event) {
         const email = event.target.querySelector('input[type="email"]')
         const password = event.target.querySelector('input[type="password"]')
-        const btnLogin = event.target.querySelector('.btn')
+        const btnLogin = event.target.querySelector('.btn-login')
         const user = {
             email: email.value,
             password: password.value
@@ -47,27 +48,6 @@ export default class LoginComponent extends Component{
     }
 
     render() {
-
-        //
-        // if (store.state.isLogin) {
-        //     _$('#app > .container').style.display = 'none'
-        //     console.log( _$('#container'))
-        //     const app = _$('#app')
-        //     app.append(createTemplate())
-        //
-        //     const components = [
-        //         new HeaderComponent(),
-        //         new AsideComponent(),
-        //         new MainMenuComponent(),
-        //         new InboxComponent(),
-        //         new MessagesComponent(),
-        //         new WriteMessageComponent(),
-        //         new AboutComponent()
-        //     ]
-        //
-        //     components.map(component => component.render())
-        //
-        // }
         let display = (store.state.isLogin) ? 'none' : 'block'
 
         this.anchor.innerHTML = `
@@ -83,7 +63,7 @@ export default class LoginComponent extends Component{
                         <a href="#">Not a member?</a>
                         <input type="email" name="userEmail" placeholder="Email..." required autocomplete="off" >
                         <input type="password" name="userPassword" placeholder="Password..." required>
-                        <button class="btn" type="submit"">Log in</button>
+                        <button class="btn btn-login" type="submit"">Log in</button>
                         <a href="#">Forgot password?</a>
                     </form>
                 </div>
@@ -94,7 +74,6 @@ export default class LoginComponent extends Component{
             event.preventDefault()
             this.loginHandler(event)
             store.dispatch('login', store.state)
-
         })
     }
 }
