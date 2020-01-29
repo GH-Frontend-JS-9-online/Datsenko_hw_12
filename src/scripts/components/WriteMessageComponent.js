@@ -2,15 +2,12 @@ import Component from '../components/Component'
 import store from '../store/Store'
 import _$ from './searcElement'
 import dashboardServices from '../sevices/DashboardServices'
-import Storage from '../store/Storage'
-
 
 export default class WriteMessageComponent extends Component{
     constructor() {
         super(store, _$('.write-message__container'))
     }
     render() {
-
         this.anchor.innerHTML = `
             <form action="#" class="write-message">
                 <input type="text" name="write-message__text" placeholder="Write a message" required="required" pattern=".*\\S.*">
@@ -22,7 +19,6 @@ export default class WriteMessageComponent extends Component{
         writeMessageBtn.addEventListener('click', (event) => {
             event.preventDefault()
             if (messageText.value.trim() !== '') {
-                // const userInfo = Storage.getData('user')
                 dashboardServices.sendMessage(messageText.value.trim())
                     .then(response => response.json())
                     .then(data => console.table(data))
