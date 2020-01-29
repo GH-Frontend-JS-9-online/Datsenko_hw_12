@@ -167,6 +167,32 @@ class DashboardServices {
         return allProjects
     }
 
+    async  updateProject(token, id, newProjectData) {
+        const updateProject = fetch(`${this._apiBase}/projects/${id}`, {
+            method: 'PUT',
+            headers: {
+               'Content-Type': 'application/json',
+                'x-access-token': token
+            },
+            body: JSON.stringify({
+                cost: newProjectData.cost,
+                status: newProjectData.status
+            })
+        })
+        return updateProject
+    }
+
+    async removeProject(token, id) {
+        const removeProject = fetch(`${this._apiBase}/projects/${id}`, {
+            method: 'DEL',
+            headers: {
+                'x-access-token': token,
+                'Content-Type': 'application/json'
+            }
+        })
+        return removeProject
+    }
+
 }
 
 const dashboardServices = new DashboardServices()
