@@ -5,6 +5,7 @@ class Store {
     constructor(reducers) {
         this.reducers = reducers
         this.state = {
+            isRegister: false,
             isLogin: false,
             headerMenuItems: ['plus', 'search', 'bell', 'ellipse'],
             asideItems: ['home', 'menu', 'trending-up', 'email', 'account-multiple'],
