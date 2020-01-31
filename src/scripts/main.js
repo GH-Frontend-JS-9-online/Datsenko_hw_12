@@ -1,4 +1,4 @@
-// import LoginComponent from './components/LoginComponent'
+//import LoginComponent from './authorization/LoginComponent'
 // const login = new LoginComponent()
 // export default login
 
