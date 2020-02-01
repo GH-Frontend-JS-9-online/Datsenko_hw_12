@@ -60,7 +60,8 @@ export default class SignComponent extends Component{
             </div>
             <div class="form-container sign-up-container">
                 <form name="registerForm" class="form">
-                    <h1>Sign up</h1><a href="http://localhost:3000/pages/login.html">Existing member?</a>
+                    <h1>Sign up</h1>
+                    <a href="#/">Existing member?</a>
                     <input type="email" name="userEmail" placeholder="Email..." required autocomplete="off">
                     <input type="password" name="userPassword" placeholder="Password..." required>
                     <input input type="text" name="userName" placeholder="Name..." required  autocomplete="off">

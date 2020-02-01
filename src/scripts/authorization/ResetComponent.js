@@ -17,8 +17,9 @@ export default class ResetComponent extends Component {
                     </div>
             </div>
             <div class="form-container sign-up-container">
-                <form name="registerForm" class="form">
+                <form name="resetForm" class="form">
                     <h1>Reset password</h1>
+                    <a href="#/">Existing member?</a>
                     <span>Please enter your new password</span>
                     <input type="password" name="userPassword" placeholder="Password..." required>
                     <input input type="password" name="userConfirmPassword" placeholder="Confirm password..." required>

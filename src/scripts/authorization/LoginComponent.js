@@ -60,11 +60,11 @@ export default class LoginComponent extends Component{
                 <div class="form-container sign-in-container">
                     <form name="loginForm" class="form">
                         <h1>Log in</h1>
-                        <a href="#">Not a member?</a>
+                        <a href="#/register">Not a member?</a>
                         <input type="email" name="userEmail" placeholder="Email..." required autocomplete="off" >
                         <input type="password" name="userPassword" placeholder="Password..." required>
                         <button class="btn btn-login" type="submit"">Log in</button>
-                        <a href="#">Forgot password?</a>
+                        <a href="#/reset">Forgot password?</a>
                     </form>
                 </div>
             </div>
