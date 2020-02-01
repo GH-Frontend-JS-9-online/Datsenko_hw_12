@@ -207,6 +207,20 @@ class DashboardServices {
         return removeProject
     }
 
+    async getAds(format='week') {
+        let token = Storage.getData('token')
+        const getAds = fetch(`${this._apiBase}/ads/${format}`, {
+            method: 'GET',
+            headers: {
+                'x-access-token': token
+            },
+            'path variables': {
+                format: format
+            }
+        })
+        return getAds
+    }
+
 }
 
 const dashboardServices = new DashboardServices()
